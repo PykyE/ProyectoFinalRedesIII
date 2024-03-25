@@ -1,25 +1,66 @@
 <div color="primary" class="container">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Consulta de dirección IpV4 | IpV6</mat-card-title>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <mat-checkbox color="primary" [(ngModel)]="isOwnIpCheck" (click)="handleCheckOwnIpClick()">¿Usar Ip del dispositivo?</mat-checkbox>
-      <mat-form-field class="example-full-width">
-        <mat-label>Dirección Ip</mat-label>
-        <input type="text" matInput [formControl]="ipAddressFormControl">
-        @if (ipAddressFormControl.hasError('invalidIp') && !ipAddressFormControl.hasError('required')) {
-          <mat-error>Formato IpV4 | IpV6 <strong>inválido</strong></mat-error>
-        }
-        @if (ipAddressFormControl.hasError('required')) {
-          <mat-error>Dirección IpV4 | IpV6 <strong>requerida</strong></mat-error>
-        }
-      </mat-form-field>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions align="end">
-      <button color="primary" (click)="handleConsultClick()" mat-stroked-button>Consultar</button>
-    </mat-card-actions>
-  </mat-card>
+  <div class="consult">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Consulta de dirección IpV4 | IpV6</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-checkbox color="primary" [(ngModel)]="isOwnIpCheck" [disabled]="!ownIpAdress" (click)="handleCheckOwnIpClick()">¿Usar Ip del dispositivo?</mat-checkbox>
+        <mat-form-field>
+          <mat-label>Dirección Ip</mat-label>
+          <input type="text" matInput [formControl]="ipAddressFormControl">
+          @if (ipAddressFormControl.hasError('invalidIp') && !ipAddressFormControl.hasError('required')) {
+            <mat-error>Formato IpV4 | IpV6 <strong>inválido</strong></mat-error>
+          }
+          @if (ipAddressFormControl.hasError('required')) {
+            <mat-error>Dirección IpV4 | IpV6 <strong>requerida</strong></mat-error>
+          }
+        </mat-form-field>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions align="end">
+        <button color="primary" (click)="test()" mat-stroked-button>Test</button>
+        <button color="primary" (click)="handleConsultClick()" [disabled]="!isOwnIpCheck && (!ipAddressFormControl.value || (ipAddressFormControl.value && !ipAddressFormControl.valid))" mat-stroked-button>Consultar</button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="results">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Resultados de consulta</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <p-table [value]="ipConsultResponseValues" [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Propiedad</th>
+                  <th>Resultado</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-prop>
+              <tr>
+                  <td>
+                    <strong>{{ prop.name }}</strong>
+                  </td>
+                  <td>{{ prop.value }}</td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Ubicación aproximada</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

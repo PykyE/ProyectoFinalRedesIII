@@ -5,7 +5,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OwnFormsModule } from './modules/shared/forms/forms.module';
+import { OwnFormsModule } from './shared/forms/forms.module';
 
 @NgModule({
   declarations: [
