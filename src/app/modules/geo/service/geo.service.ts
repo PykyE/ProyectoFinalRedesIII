@@ -16,7 +16,7 @@ export class GeoService {
   }
   
   consultIpAddress(ip: string | number) {
-    return this.http.get(Environment.api_url + `?ip=${ip}`);
+    return this.http.get(Environment.lambda_url + `?ip=${ip}`);
   }
 
 }
