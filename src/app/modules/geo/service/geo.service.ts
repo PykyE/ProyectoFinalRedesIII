@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Environment } from '../../../env/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class GeoService {
   }
   
   consultIpAddress(ip: string | number) {
-    return this.http.get(Environment.lambda_url + `?ip=${ip}`);
+    return this.http.get(environment.lambda_url + `?ip=${ip}`);
   }
 
 }

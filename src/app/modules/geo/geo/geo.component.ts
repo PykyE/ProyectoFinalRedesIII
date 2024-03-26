@@ -1,8 +1,8 @@
+import { environment } from '../../../../environments/environment.development';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IpConsultResponse } from '../../../utils/types';
 import { GeoService } from '../service/geo.service';
-import { Environment } from '../../../env/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -66,8 +66,8 @@ export class GeoComponent implements OnInit {
   }
 
   setGMapsUrl() {
-    let unsafeStreetViewUrl = `https://www.google.com/maps/embed/v1/streetview?key=${Environment.g_maps_api_key}&location=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
-    let unsafeStaticUrl = `https://www.google.com/maps/embed/v1/place?key=${Environment.g_maps_api_key}&q=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}&center=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
+    let unsafeStreetViewUrl = `https://www.google.com/maps/embed/v1/streetview?key=${environment.g_maps_api_key}&location=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
+    let unsafeStaticUrl = `https://www.google.com/maps/embed/v1/place?key=${environment.g_maps_api_key}&q=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}&center=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
     this.gMapsStreetViewUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStreetViewUrl);
     this.gMapsStaticUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStaticUrl);
   }
