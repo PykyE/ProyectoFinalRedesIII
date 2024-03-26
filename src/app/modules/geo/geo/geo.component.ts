@@ -66,7 +66,9 @@ export class GeoComponent implements OnInit {
   }
 
   setGMapsUrl() {
+    // @ts-ignore
     let unsafeStreetViewUrl = `https://www.google.com/maps/embed/v1/streetview?key=${environment.g_maps_api_key}&location=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
+    // @ts-ignore
     let unsafeStaticUrl = `https://www.google.com/maps/embed/v1/place?key=${environment.g_maps_api_key}&q=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}&center=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
     this.gMapsStreetViewUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStreetViewUrl);
     this.gMapsStaticUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStaticUrl);

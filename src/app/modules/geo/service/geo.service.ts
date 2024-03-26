@@ -16,6 +16,7 @@ export class GeoService {
   }
   
   consultIpAddress(ip: string | number) {
+    // @ts-ignore
     return this.http.get(environment.lambda_url + `?ip=${ip}`);
   }
 
