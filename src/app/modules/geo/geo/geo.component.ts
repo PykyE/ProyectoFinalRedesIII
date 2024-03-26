@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IpConsultResponse } from '../../../utils/types';
 import { GeoService } from '../service/geo.service';
+import { Environment } from '../../../env/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-geo',
@@ -11,7 +13,8 @@ import { GeoService } from '../service/geo.service';
 export class GeoComponent implements OnInit {
 
   constructor(
-    private geoService: GeoService
+    private geoService: GeoService,
+    private domSanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -19,7 +22,6 @@ export class GeoComponent implements OnInit {
     this.geoService.getOwnPublicAddress().subscribe({
       next: (resp: any) => {
         this.ownIpAdress = resp.ip;
-        console.log('this.ownIpAdress:', this.ownIpAdress);
       },
       error: (error: any) => {
         console.error(error);
@@ -35,6 +37,10 @@ export class GeoComponent implements OnInit {
   isOwnIpCheck: Boolean = false;
 
   ownIpAdress: string = '';
+
+  gMapsStreetViewUrl: any = '';
+
+  gMapsStaticUrl: any = '';
 
   ipAddressFormControl: FormControl = new FormControl({value: "", disabled: false}, [Validators.required, this.isValidIp()]);
 
@@ -57,7 +63,13 @@ export class GeoComponent implements OnInit {
         value: value
       }
     });
-    console.log(this.ipConsultResponseValues);
+  }
+
+  setGMapsUrl() {
+    let unsafeStreetViewUrl = `https://www.google.com/maps/embed/v1/streetview?key=${Environment.g_maps_api_key}&location=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
+    let unsafeStaticUrl = `https://www.google.com/maps/embed/v1/place?key=${Environment.g_maps_api_key}&q=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}&center=${this.ipConsultResponse.Latitude},${this.ipConsultResponse.Longtitude}`
+    this.gMapsStreetViewUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStreetViewUrl);
+    this.gMapsStaticUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(unsafeStaticUrl);
   }
 
   isValidIp(): ValidatorFn {
@@ -72,8 +84,8 @@ export class GeoComponent implements OnInit {
     }
   }
 
-  test () {
-    console.log(this.ipConsultResponse)
+  isIpConsultResponseEmpty() {
+    return Object.keys(this.ipConsultResponse).length != 0 && Object.values(this.ipConsultResponse).every(value => value !== null && value !== undefined)
   }
 
   handleConsultClick() {
@@ -83,9 +95,10 @@ export class GeoComponent implements OnInit {
         next: (resp: any) => {
           this.ipConsultResponse = resp;
           this.setIpConsultResponseValues();
+          this.setGMapsUrl();
         },
         error: error => {
-          console.log(error);
+          console.error(error);
         },
         complete: () => {
           this.loading = false;

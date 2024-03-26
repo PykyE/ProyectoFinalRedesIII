@@ -15,8 +15,8 @@ export class GeoService {
     return this.http.get('https://api.ipify.org/?format=json');
   }
   
-  consultIpAddress(ip: string | number | null) {
-    return this.http.get(Environment.api_url + `?ip=${ip ? ip : ''}`);
+  consultIpAddress(ip: string | number) {
+    return this.http.get(Environment.api_url + `?ip=${ip}`);
   }
 
 }

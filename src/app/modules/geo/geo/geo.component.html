@@ -20,15 +20,14 @@
       </mat-card-content>
       <mat-divider></mat-divider>
       <mat-card-actions align="end">
-        <button color="primary" (click)="test()" mat-stroked-button>Test</button>
-        <button color="primary" (click)="handleConsultClick()" [disabled]="!isOwnIpCheck && (!ipAddressFormControl.value || (ipAddressFormControl.value && !ipAddressFormControl.valid))" mat-stroked-button>Consultar</button>
+        <button color="primary" (click)="handleConsultClick()" [disabled]="loading || (!isOwnIpCheck && (!ipAddressFormControl.value || (ipAddressFormControl.value && !ipAddressFormControl.valid)))" mat-stroked-button>Consultar</button>
       </mat-card-actions>
       <mat-card-footer>
         <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
       </mat-card-footer>
     </mat-card>
   </div>
-  <div class="results">
+  <div class="results" *ngIf="isIpConsultResponseEmpty()">
     <mat-card>
       <mat-card-header>
         <mat-card-title>Resultados de consulta</mat-card-title>
@@ -55,11 +54,30 @@
     </mat-card>
     <mat-card>
       <mat-card-header>
+        <mat-card-title>Vista satelital</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <iframe
+          frameborder="0" style="border:0"
+          referrerpolicy="no-referrer-when-downgrade"
+          [src]="gMapsStreetViewUrl"
+          allowfullscreen>
+        </iframe>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
         <mat-card-title>Ubicación aproximada</mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content>
-
+        <iframe
+          frameborder="0" style="border:0"
+          referrerpolicy="no-referrer-when-downgrade"
+          [src]="gMapsStaticUrl"
+          allowfullscreen>
+        </iframe>
       </mat-card-content>
     </mat-card>
   </div>
