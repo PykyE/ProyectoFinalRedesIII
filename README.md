@@ -1,27 +1,36 @@
-# AngularElectron
+# Proyecto final redes de comunicaciones III
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
+Miguel Ángel Rico García - 20191020107
 
-## Development server
+## Funcionamiento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El aplicativo permite realizar consultas con base a una dirección IP, retornando información específica como la siguiente:
 
-## Code scaffolding
+* Número de sistema autónomo ASN
+* Ciudad
+* País
+* Código de país
+* Proveedor de servicios de internet ISP
+* Latitud
+* Longitud
+* Código Zip
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Adicionalmente a esto, se tendrán mapas aéreos y de visualización por calles generados con la latitud y la longitud de la respuesta de la consulta, esto haciendo uso del API de Google Maps.
 
-## Build
+### Nota
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+El aplicativo puede realizar consultas con base a la dirección del dispositivo desde donde se acceda al mismo, o en caso contrario, con una dirección Ipv4 o Ipv6 propia.
 
-## Running unit tests
+## Capturas del aplicativo
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Utilizando la dirección propia del dispositivo
 
-## Running end-to-end tests
+![1](./src/assets/1.png)
+![2](./src/assets/2.png)
+![3](./src/assets/3.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Utilizando una dirección Ipv4 propia
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![4](./src/assets/4.png)
+![5](./src/assets/5.png)
+![6](./src/assets/6.png)
