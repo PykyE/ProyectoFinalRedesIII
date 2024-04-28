@@ -18,30 +18,30 @@ Con esta herramienta se podrá monitorear el tráfico de red por aplicación, pr
 
 2.1 Tocar en 'skip'
 
-![1](./src/assets/draeneg/1.png)
+![1](./src/assets/draeneg/1.jpg)
 
 2.2 Aceptamos términos y condiciones
 
-![2](./src/assets/draeneg/2.png)
+![2](./src/assets/draeneg/2.jpg)
 
 2.3 Tocar en 'Configure now' y habilitar permisos relacionados a VPN
 
-![3](./src/assets/draeneg/3.png)
+![3](./src/assets/draeneg/3.jpg)
 
 2.4 Volvemos a la pantalla principal y tocamos en 'Traffic'
 
-![4](./src/assets/draeneg/4.png)
+![4](./src/assets/draeneg/4.jpg)
 
 2.5 En esta pantalla capturaremos todo el tráfico de red de las aplicaciones del celular, para nuestro caso en particular filtraremos el tráfico para el aplicativo Whatsapp tocando en 'All applications' y buscándolo en la lista
 
-![5](./src/assets/draeneg/5.png)
+![5](./src/assets/draeneg/5.jpg)
 
-![6](./src/assets/draeneg/6.png)
+![6](./src/assets/draeneg/6.jpg)
 
-![7](./src/assets/draeneg/7.png)
+![7](./src/assets/draeneg/7.jpg)
 
 2.6 Con estas configuraciones se puede comenzar a rastrear el tráfico del aplicativo, como lo pueden ser llamadas, obteniendo así la dirección IpV4 del emisor de estas
 
-![8](./src/assets/draeneg/8.png)
+![8](./src/assets/draeneg/8.jpg)
 
-![9](./src/assets/draeneg/9.png)
+![9](./src/assets/draeneg/9.jpg)
