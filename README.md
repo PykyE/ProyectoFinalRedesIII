@@ -2,6 +2,14 @@
 
 Miguel Ángel Rico García - 20191020107
 
+## Instalación
+
+- Ejecutar ```npm i```
+- Configurar variables de entorno requeridas (lambda_url, g_maps_api_key)
+- Ejecutar ```npm run dev```
+
+Con esto el proyecto estará corriendo en el puerto local 4200 por defecto.
+
 ## Funcionamiento
 
 El aplicativo permite realizar consultas con base a una dirección IP, retornando información específica como la siguiente:
